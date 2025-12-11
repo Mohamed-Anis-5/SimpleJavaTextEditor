@@ -1,0 +1,21 @@
+# Compiled class files
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# Logs and metadata
+*.log
+.metadata
+.classpath
+.project
+
+# IDE specific files
+.idea/
+*.iml
+*.iws
+*.ipr
+/bin/
+/out/
