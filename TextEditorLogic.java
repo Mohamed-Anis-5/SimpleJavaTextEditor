@@ -1,7 +1,7 @@
-import javax.swing.*;
-import java.io.*;
-import java.awt.Font;
-import java.awt.Component;
+import javax.swing.*;//Importe toutes les classes Swing
+import java.io.*;//Importe toutes les classes d’entrée/sortie (Input/Output)
+import java.awt.Font;//Importe la classe Font
+import java.awt.Component;//Importe la classe Component
 
 public class TextEditorLogic {
     private JTextArea textArea;
@@ -19,15 +19,15 @@ public class TextEditorLogic {
     }
 
     // --- State Accessors ---
-    public boolean isModified() {
+    public boolean isModified() {//Indique si le texte a été modifié
         return isModified;
     }
 
-    public void setModified(boolean modified) {
+    public void setModified(boolean modified) {// Modifie l’état de modificationUtilisée quand l’utilisateur écrit dans le texte
         isModified = modified;
     }
 
-    public File getCurrentFile() {
+    public File getCurrentFile() {//Retourne le fichier actuellement ouvert
         return currentFile;
     }
     
@@ -37,7 +37,7 @@ public class TextEditorLogic {
         textArea.setText("");
         currentFile = null;
         isModified = false;
-        // The frame (TextEditorFrame) will be responsible for calling updateTitle()
+      //Efface le contenu de la zone de texte Réinitialise le fichier courant (currentFile = null)Indique qu’il n’y a pas de modification
     }
 
     public void handleOpenFile(JFileChooser fileChooser) {
@@ -64,7 +64,7 @@ public class TextEditorLogic {
                 JOptionPane.showMessageDialog(parent, "Error reading file: " + selectedFile.getName(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }
+    }//Ouvre une fenêtre pour choisir un fichier Si l’utilisateur valide : lit le fichier ligne par ligne affiche le contenu dans la zone de texte Met à jour :currentFile isModified = false
 
     public void handleSaveFile(JFileChooser fileChooser) {
         File fileToSave = currentFile;
@@ -99,7 +99,7 @@ public class TextEditorLogic {
                 );
             }
         }
-    }
+    }//Le fichier existe déjà :Enregistre directement 🔹 Nouveau fichier :Ouvre une fenêtre “Enregistrer sous” Après l’enregistrement : Écrit le texte dans le fichier Met à jour : currentFile isModified = false Affiche un message de succès
     
     public void handleFontSize(float delta) {
         float newSize = currentFontSize + delta;
@@ -113,9 +113,9 @@ public class TextEditorLogic {
         currentFontSize = newSize;
         Font currentFont = textArea.getFont();
         textArea.setFont(currentFont.deriveFont(currentFontSize));
-    }
+    }//Empêche une taille trop petite ou trop grande
     
     public float getCurrentFontSize() {
         return currentFontSize;
-    }
+    }//Retourne la taille actuelle de la police Utile pour afficher la taille dans le menu ou la barre d’état
 }
